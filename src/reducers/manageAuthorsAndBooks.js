@@ -1,3 +1,5 @@
+import uuid from "uuid";
+
 export default function bookApp(
   state = {
     authors: [],
@@ -8,10 +10,18 @@ export default function bookApp(
   let idx;
   switch (action.type) {
     case "ADD_BOOK":
-      return {
-        ...state,
-        books: [...state.books, action.book]
-      };
+      let exisitingAuthor = state.filter( 
+        author => author.authorName === action.book.authorName
+        );
+        if (exisitingAuthor.length > 0) {
+          return state;
+        } else {
+          return [...state, { authorName: action.book.authorName, id: uuid( )}];
+        }
+      // return {
+      //   ...state,
+      //   books: [...state.books, action.book]
+      // };
 
     case "REMOVE_BOOK":
       idx = state.books.findIndex(book => book.id === action.id);
