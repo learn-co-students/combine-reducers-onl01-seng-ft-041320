@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 export class AuthorInput extends Component {
 
-  state = {
+  state = { 
     authorName: '',
   }
 
